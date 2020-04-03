@@ -8,9 +8,44 @@
         </form>
     </div>
     <h4>&nbsp;</h4>
-    <div class="home__test-div">
+    {{! home__test-div }}
+    <div class="current-weather-wrapper">
         {{> loading }}
         {{! <h1>Hello World</h1> }}
+        <div class="city-name">
+            Florianópolis
+        </div>
+        <div>
+        </div>
+    </div>
+    {{! <div class="current-weather-wrapper">
+    </div> }}
+    <div class="weather-wrapper">
+        <div class="weather-card london">
+            <img class="weather-icon" src="../assets/weather-icons/50d.svg">
+            <h1>14º</h1>
+            <p>18:00</p>
+        </div>
+        <div class="weather-card madrid">
+            <img class="weather-icon" src="../assets/weather-icons/02n.svg">
+            <h1>26º</h1>
+            <p>21:00</p>
+        </div>
+        <div class="weather-card london">
+            <img class="weather-icon" src="../assets/weather-icons/03d.svg">
+            <h1>14º</h1>
+            <p>00:00</p>
+        </div>
+        <div class="weather-card london">
+            <img class="weather-icon" src="../assets/weather-icons/09n.svg">
+            <h1>14º</h1>
+            <p>03:00</p>
+        </div>
+        <div class="weather-card madrid">
+            <img class="weather-icon" src="../assets/weather-icons/01d.svg">
+            <h1>26º</h1>
+            <p>06:00</p>
+        </div>
     </div>
 </section>
 {{> footer }}

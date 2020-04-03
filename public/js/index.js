@@ -38,6 +38,7 @@ var HttpClient = /*#__PURE__*/function () {
 }();
 
 var init = function init() {
+  // document.querySelector('body').innerHTML = '<img src="../assets/weather-icons/50n.svg" alt="Kiwi standing on oval">'; 
   setTimeout(function () {
     var loadingDiv = document.querySelector('.loading');
     loadingDiv.className = loadingDiv.className.replace(' active', '');

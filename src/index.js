@@ -19,6 +19,7 @@ class HttpClient {
 }
 
 const init = () => {
+  // document.querySelector('body').innerHTML = '<img src="../assets/weather-icons/50n.svg" alt="Kiwi standing on oval">'; 
   setTimeout(() => {
     const loadingDiv = document.querySelector('.loading');
     loadingDiv.className = loadingDiv.className.replace(' active', '');

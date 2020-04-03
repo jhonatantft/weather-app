@@ -29,7 +29,24 @@ router.get('/weather', (req, res) => {
 });
 
 const parseWeatherData = (data) => {
-  return data;
+  const weatherTimeList = Array.isArray(data.list) ? data.list.splice(0, 6) : []
+  return {
+    cityName: data.city.name,
+    timeList: weatherTimeList.map((item) => {
+      return {
+        temperature: item.main.temp,
+        feelsLike: item.main.feels_like,
+        minimum: item.main.temp_min,
+        maximum: item.main.temp_max,
+        humidity: item.main.humidity,
+        weather: item.weather.main,
+        weatherDescription: item.weather.description,
+        icon: item.weather.icon,
+        unixTime: item.dt
+      }
+    })    
+  };
+  // return data
 };
 
 const weatherApiRequest = ({ latitude, longitude }, res) => {

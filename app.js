@@ -17,9 +17,9 @@ app.use(express.static('public'));
 app.use('/', home);
 app.use('/hi', home);
 
-app.get('*', (req, res) => {
-  res.status(404).send('what???');
-});
+// app.get('*', (req, res) => {
+//   res.status(404).send('what???');
+// });
 
 app.listen(process.env.PORT, () => {
   console.log(`Listening on port ${process.env.PORT || 3000}.`);
