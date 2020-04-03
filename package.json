@@ -1,0 +1,29 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "Express, sass and mustache boilerplate",
+  "main": "app.js",
+  "scripts": {
+    "transpile": "babel src/index.js -d public/js",
+    "transpile:watch": "babel src/index.js -d public/js -w",
+    "compile:sass": "node-sass src/sass/main.scss public/css/main.css -w",
+    "build": "npm run transpile && node-sass src/sass/main.scss public/css/main.css",
+    "start": "npm run build && node app.js"
+  },
+  "author": "Jhonatan Tomimatsu",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "node-sass": "^4.9.4"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.8.7",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.4",
+    "express-router": "0.0.1",
+    "mustache-express": "^1.2.8",
+    "serve-favicon": "^2.5.0"
+  }
+}

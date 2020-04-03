@@ -1,0 +1,12 @@
+.home {
+    &__section-slider {
+        background-color: $color-primary;
+        height: 100vh;
+        width: 100vw;
+        @include absCenter;
+    }
+    &__test-div {
+        @include absCenter;
+        font-size: 5rem;
+    }
+}
