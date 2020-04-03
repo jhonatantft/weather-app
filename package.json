@@ -8,7 +8,8 @@
     "transpile:watch": "babel src/index.js -d public/js -w",
     "compile:sass": "node-sass src/sass/main.scss public/css/main.css -w",
     "build": "npm run transpile && node-sass src/sass/main.scss public/css/main.css",
-    "start": "npm run build && node app.js"
+    "start": "npm run build && node app.js",
+    "start:open": "npm run build && xdg-open http://localhost:8080 && node app.js"
   },
   "author": "Jhonatan Tomimatsu",
   "license": "ISC",

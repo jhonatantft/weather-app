@@ -14,10 +14,12 @@ app.set('view engine', 'mustache')
 app.set('views', __dirname + '/src/views');
 app.use(express.static('public'));
 
-// app.use(favicon(__dirname + '/public/img/favicon.png'));
-
 app.use('/', home);
 app.use('/hi', home);
+
+app.get('*', (req, res) => {
+  res.status(404).send('what???');
+});
 
 app.listen(process.env.PORT, () => {
   console.log(`Listening on port ${process.env.PORT || 3000}.`);

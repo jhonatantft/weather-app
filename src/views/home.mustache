@@ -1,7 +1,16 @@
 {{> header }}
 <section class="home__section-slider">
+    <div class="search-input">
+        <form>
+            <input type="text" />
+            <div class="after"></div>
+            <input type="submit" />
+        </form>
+    </div>
+    <h4>&nbsp;</h4>
     <div class="home__test-div">
-        <h1>Hello World</h1>
+        {{> loading }}
+        {{! <h1>Hello World</h1> }}
     </div>
 </section>
 {{> footer }}
