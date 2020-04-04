@@ -11,6 +11,8 @@ Taking into account the proposed development time (less than 48 hours), the appl
 * There is a memory cache that checks if a request has already been made in less than two hours with the same coordinate
     * If it was done in less than two hours, the system does not make the request and returns the cached response. Otherwise, a new request is made to the external APIs
 
+![Wather application](sample.png)
+
 ## Table of contents
 [Prerequisites](#prerequisites)
 
