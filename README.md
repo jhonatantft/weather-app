@@ -32,7 +32,7 @@ Run:
 ```
 $ npm i // install all dependencies
 $ npm start // starts your express server using process.env.PORT or 8080
-$ npm start // starts the aplication and open the browser
+$ npm start:open // starts the aplication and open the browser
 $ npm run compile:sass // compile your .sass files to .css into public folder with a watcher
 $ npm run transpile // transpiles src/index.js into public folder to be used on the client
 $ npm run transpile:watch // watch each change on file
@@ -44,7 +44,6 @@ Run:
 ```
 $ yarn
 $ yarn start
-$ yarn compile:sass
 ```
 
 ### Docker
