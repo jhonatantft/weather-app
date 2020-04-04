@@ -3,6 +3,41 @@ const request = require('request');
 const router = express.Router();
 
 /**
+ * @summary Cache data store
+ *
+ * @classdesc Stores weather data from openWeather API
+ * according with current coordinates being requested
+ * @hideconstructor
+ */
+class WeatherCache {
+  /**
+   * Cached dict
+   */
+  constructor () {
+    this.cachedData = {}
+  }
+  /**
+   * Retrieve memory cache
+   */
+  get cache () {
+    return this.cachedData;
+  }
+
+  /**
+   * @description returns boolean to invalidate current cache data
+   *
+   * @param {Date} date - time that data was created
+   * @returns {Boolean}
+   */
+  shouldInvalidateCache (date) {
+    const hour = 1000 * 120 * 60;
+    const twoHoursAgo = new Date(Date.now() - hour)
+    return date < twoHoursAgo;
+  }
+}
+const cachedWeatherData = new WeatherCache();
+
+/**
  * Returns american time notation
  *
  * @param {String} hours - 
@@ -62,32 +97,41 @@ const weatherApiDataFetcher = ({ latitude, longitude, cityName }, res) => {
   const openWeatherApikey = 'b78eb13035123aa706e7715ef9d79f6c';
   const openWeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${openWeatherApikey}`;
   const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${openWeatherApikey}`;
-  
-  request(currentWeatherUrl, async (error, response, body) => {
-    try {
-      const { weather, main } = JSON.parse(body);
-      if (!error && response.statusCode === 200) {
-        request(openWeatherUrl, async (error, response, body) => {
-          try {
-            const data = JSON.parse(body);
-            if (!error && response.statusCode === 200) {
-              res.render('home', await parseWeatherData(data, cityName, weather, main))        
-              // res.json(await parseWeatherData(data)); 
-            } else {
+  const currentDataOnMemoryCache = cachedWeatherData.cache[`${latitude}-${longitude}`];
+  const lastDataTimeRequested = (currentDataOnMemoryCache || {}).createdAt; 
+
+  if (currentDataOnMemoryCache && !cachedWeatherData.shouldInvalidateCache(lastDataTimeRequested)) {
+    res.render('home', currentDataOnMemoryCache);
+  } else {
+    request(currentWeatherUrl, async (error, response, body) => {
+      try {
+        const { weather, main } = JSON.parse(body);
+        if (!error && response.statusCode === 200) {
+          request(openWeatherUrl, async (error, response, body) => {
+            try {
+              const data = JSON.parse(body);
+              if (!error && response.statusCode === 200) {
+                const normalizedData = await parseWeatherData(data, cityName, weather, main);
+                normalizedData.createdAt = new Date();
+                cachedWeatherData.cache[`${latitude}-${longitude}`] = normalizedData;
+
+                res.render('home', normalizedData);
+              } else {
+                res.json(error);
+              }
+            } catch (error) {
               res.json(error);
             }
-          } catch (error) {
-            res.json(error);
-          }
-        });
-
-      } else {
+          });
+  
+        } else {
+          res.json(error);
+        }
+      } catch (error) {
         res.json(error);
       }
-    } catch (error) {
-      res.json(error);
-    }
-  });
+    });
+  }
 };
 
 /**
