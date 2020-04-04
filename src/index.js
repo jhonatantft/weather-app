@@ -61,18 +61,19 @@ form.addEventListener('submit', (e) => {
   const inputValue = searchInput.value;
   const request = new HttpClient();
   const endpoint = `search?q=${inputValue}`
-  request.get(endpoint,
-    function onSuccess (response) {
-      try {
-        var data = JSON.parse(response);
-        // something(data);
-        console.log(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }, function onError (response) {
-      // anotherThing(response);
-  });
+  location.href = endpoint; 
+  // request.get(endpoint,
+  //   function onSuccess (response) {
+  //     try {
+  //       var data = JSON.parse(response);
+  //       // something(data);
+  //       console.log(data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }, function onError (response) {
+  //     // anotherThing(response);
+  // });
 
   e.preventDefault();
   console.log('Thanks, high five!');

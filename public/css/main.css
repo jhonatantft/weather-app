@@ -408,11 +408,10 @@ path {
 
 .weather-icon {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 140px;
   top: 0;
   float: right;
-  margin: -30px 35px 0 0;
+  margin: 0 64px 0 0;
   animation: weather-icon-move 5s ease-in-out infinite; }
 
 .sun {
@@ -501,6 +500,11 @@ path {
     height: 190px;
     margin: 10px;
     padding: 5px; }
+    .current-weather-wrapper .weather-info .weather-card {
+      margin: auto; }
+      .current-weather-wrapper .weather-info .weather-card .weather-icon {
+        width: 200px;
+        margin: -30px 35px 0 0; }
     .current-weather-wrapper .weather-info .city-name {
       font-size: 40px; }
     .current-weather-wrapper .weather-info .weather-description {

@@ -524,11 +524,13 @@ $color6: #313131;
 
 .weather-icon {
     position: relative;
-    width: 200px;
-    height: 200px;
+    // width: 200px;
+    // height: 200px;
+    width: 140px;
     top: 0;
     float: right;
-    margin: -30px 35px 0 0;
+    // margin: -30px 35px 0 0;
+    margin: 0 64px 0 0;
     animation: weather-icon-move 5s ease-in-out infinite;
 }
 
@@ -660,6 +662,15 @@ $color6: #313131;
         padding:5px;
         // background:blue;
         // color:white;
+
+        .weather-card {
+            margin: auto;
+
+            .weather-icon {
+                width: 200px;
+                margin: -30px 35px 0 0;
+            }
+        }
 
         .city-name {
             font-size: 40px;

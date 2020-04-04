@@ -3,7 +3,27 @@ const request = require('request');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('home')
+  const query = req.query.q
+  const googleApikey = 'AIzaSyD6rKc6URJVJv5GNgNydJxd19jitau6pg0'
+  const googleGeocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=${googleApikey}`
+  request(googleGeocodingUrl, async (error, response, body) => {
+      try {
+        const geometry = JSON.parse(body).results[0].geometry.location
+        if (!error && response.statusCode === 200 && geometry) {
+          const coordinates = {
+            latitude: Number(geometry.lat.toFixed(3)),
+            longitude: Number(geometry.lng.toFixed(3))
+          }
+          await weatherApiRequest(coordinates, res)
+        } else {
+          res.json(error);
+        }
+      } catch (error) {
+        res.json(error);
+      }
+    }
+  );
+  // res.render('home')
 });
 
 
@@ -28,21 +48,26 @@ router.get('/weather', (req, res) => {
   // })
 });
 
+const formaAmPm = (time) => {
+  return Number(time) > 12 ? time % 12 + ' pm' : time + ' am' 
+};
+
 const parseWeatherData = (data) => {
-  const weatherTimeList = Array.isArray(data.list) ? data.list.splice(0, 6) : []
+  const weatherTimeList = Array.isArray(data.list) ? data.list.splice(0, 5) : []
   return {
     cityName: data.city.name,
-    timeList: weatherTimeList.map((item) => {
+    weatherList: weatherTimeList.map((item) => {
+      
       return {
-        temperature: item.main.temp,
+        temperature: parseInt(item.main.temp),
         feelsLike: item.main.feels_like,
         minimum: item.main.temp_min,
         maximum: item.main.temp_max,
         humidity: item.main.humidity,
-        weather: item.weather.main,
-        weatherDescription: item.weather.description,
-        icon: item.weather.icon,
-        unixTime: item.dt
+        weather: item.weather[0].main,
+        weatherDescription: item.weather[0].description,
+        icon: item.weather[0].icon,
+        unixTime: formaAmPm(('0' + new Date(item.dt * 1000).getHours()).slice(-2))
       }
     })    
   };
@@ -57,7 +82,9 @@ const weatherApiRequest = ({ latitude, longitude }, res) => {
     try {
       const data = JSON.parse(body);
       if (!error && response.statusCode === 200) {
-        res.json(await parseWeatherData(data));
+        res.render('home', await parseWeatherData(data))
+        
+        // res.json(await parseWeatherData(data));
       } else {
         res.json(error);
       }
