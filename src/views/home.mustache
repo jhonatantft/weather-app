@@ -2,12 +2,13 @@
 {{> loading }}
 <section class="home__section-slider hidden">
     <div class="search-input">
-        <form>
+        <form id="search">
             <input type="text" />
             <div class="after"></div>
             <input type="submit" />
         </form>
     </div>
+
     <div class="current-weather-wrapper">
         <div class="weather-info">
             <div class="city-name">
@@ -29,10 +30,13 @@
 
         </div>
     </div>
+
+    <hr class="divider">
+
     <div class="weather-wrapper">
     {{#weatherList}}
         <div class="weather-card">
-            <img class="weather-icon" src="../assets/weather-icons/{{ icon }}.svg">
+            <img class="weather-icon sun-{{ icon }}" src="../assets/weather-icons/{{ icon }}.svg">
             <h1>
                 {{ temperature }}º
             </h1>
