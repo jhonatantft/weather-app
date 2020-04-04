@@ -1,44 +1,6 @@
 "use strict";
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-/**
- * Http request class
- * 
- * @constructor
- */
-var HttpClient = /*#__PURE__*/function () {
-  function HttpClient() {
-    _classCallCheck(this, HttpClient);
-  }
-
-  _createClass(HttpClient, [{
-    key: "get",
-    value: function get(url, successCallback, errorCallback) {
-      var xhr = new XMLHttpRequest();
-
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-          successCallback(xhr.responseText);
-        } else if (xhr.status === 404) {
-          errorCallback(xhr);
-        }
-      };
-
-      xhr.open('GET', url, true);
-      xhr.send(null);
-    }
-  }]);
-
-  return HttpClient;
-}();
-
 var init = function init() {
-  // document.querySelector('body').innerHTML = '<img src="../assets/weather-icons/50n.svg" alt="Kiwi standing on oval">'; 
   setTimeout(function () {
     var loadingDiv = document.querySelector('.loading');
     loadingDiv.className = loadingDiv.className.replace(' active', '');
@@ -78,21 +40,8 @@ after.addEventListener('click', function (e) {
 });
 form.addEventListener('submit', function (e) {
   var inputValue = searchInput.value;
-  var request = new HttpClient();
   var endpoint = "search?q=".concat(inputValue);
-  location.href = endpoint; // request.get(endpoint,
-  //   function onSuccess (response) {
-  //     try {
-  //       var data = JSON.parse(response);
-  //       // something(data);
-  //       console.log(data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }, function onError (response) {
-  //     // anotherThing(response);
-  // });
-
+  location.href = endpoint;
   e.preventDefault();
   console.log('Thanks, high five!');
   form.className += ' explode';

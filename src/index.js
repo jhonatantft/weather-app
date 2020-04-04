@@ -1,25 +1,4 @@
-/**
- * Http request class
- * 
- * @constructor
- */
-class HttpClient {
-  get (url, successCallback, errorCallback) {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        successCallback(xhr.responseText);
-      } else if (xhr.status === 404) {
-        errorCallback(xhr);
-      }
-    }
-    xhr.open('GET', url, true);            
-    xhr.send(null);
-  }
-}
-
 const init = () => {
-  // document.querySelector('body').innerHTML = '<img src="../assets/weather-icons/50n.svg" alt="Kiwi standing on oval">'; 
   setTimeout(() => {
     const loadingDiv = document.querySelector('.loading');
     loadingDiv.className = loadingDiv.className.replace(' active', '');
@@ -59,22 +38,8 @@ after.addEventListener('click', (e) => {
 
 form.addEventListener('submit', (e) => {
   const inputValue = searchInput.value;
-  const request = new HttpClient();
   const endpoint = `search?q=${inputValue}`
   location.href = endpoint; 
-  // request.get(endpoint,
-  //   function onSuccess (response) {
-  //     try {
-  //       var data = JSON.parse(response);
-  //       // something(data);
-  //       console.log(data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }, function onError (response) {
-  //     // anotherThing(response);
-  // });
-
   e.preventDefault();
   console.log('Thanks, high five!');
   form.className += ' explode'

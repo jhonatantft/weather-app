@@ -507,5 +507,7 @@ path {
         margin: -30px 35px 0 0; }
     .current-weather-wrapper .weather-info .city-name {
       font-size: 40px; }
+    .current-weather-wrapper .weather-info .actual-location {
+      font-size: 20px; }
     .current-weather-wrapper .weather-info .weather-description {
       font-size: 30px; }
