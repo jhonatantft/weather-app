@@ -1,13 +1,15 @@
-# weather-app
-This is a minimalist weather app.
+# Weather app
+This is a minimalist weather app
 
-Taking into account the proposed development time (less than 48 hours), the application is simple. The best principle of software engineering used here was "simplicity", if I don’t need to use, I don’t need to implement or import unnecessary libs.
+Taking into account the proposed development time (less than 48 hours), the application is simple. The best principle of software engineering used here was "simplicity", if I don’t need to use, I don’t need to implement or import unnecessary libs
 
 ### Client side
-The client side was implemented without libs or frameworks, pure javascript.
+* The client side was implemented without libs or frameworks, pure javascript
 
 ### Server side
-For the server side I used Express to speed up the development of translation routes.
+* For the server side I used Express to speed up the development of translation routes
+* There is a memory cache that checks if a request has already been made in less than two hours with the same coordinate
+    * If it was done in less than two hours, the system does not make the request and returns the cached response. Otherwise, a new request is made to the external APIs
 
 ## Table of contents
 [Prerequisites](#prerequisites)
@@ -19,7 +21,7 @@ For the server side I used Express to speed up the development of translation ro
 ## Prerequisites
 Make sure you have these requirements installed on your machine
 * Node^8
-* npm
+* npm / yarn / docker
 
 ## Installation
 
