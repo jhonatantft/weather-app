@@ -18,6 +18,8 @@ Taking into account the proposed development time (less than 48 hours), the appl
 
 [Project structure](#project-structure)
 
+[Technologies used](#technologies-used)
+
 ## Prerequisites
 Make sure you have these requirements installed on your machine
 * Node^8
@@ -67,7 +69,7 @@ src/
 |- index.jsx _______________________________ # Client application entry
 ````
 
-#### Technologies used
+### Technologies used
 
 * [Babel 7](https://github.com/babel/babel) [ transforming JSX and ES6,ES7,ES8 ]
 * [Express](https://expressjs.com/) [ Fast, unopinionated, minimalist web framework for Node.js
