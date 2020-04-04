@@ -692,3 +692,9 @@ path {
         }
     }
 }
+
+@media (max-width: 400px) {
+    .current-weather-wrapper {
+        height: 85%;
+    }
+}

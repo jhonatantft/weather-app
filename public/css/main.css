@@ -522,3 +522,7 @@ path {
       font-size: 20px; }
     .current-weather-wrapper .weather-info .weather-description {
       font-size: 30px; }
+
+@media (max-width: 400px) {
+  .current-weather-wrapper {
+    height: 85%; } }
