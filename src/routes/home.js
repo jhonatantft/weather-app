@@ -94,7 +94,7 @@ const parseWeatherData = (data, cityName, currentWeather, main) => {
  * @returns {Object}
  */
 const weatherApiDataFetcher = ({ latitude, longitude, cityName }, res) => {
-  const openWeatherApikey = 'b78eb13035123aa706e7715ef9d79f6c';
+  const openWeatherApikey = '980e6f231a670d3038538f9bfb1cc794';
   const openWeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${openWeatherApikey}`;
   const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${openWeatherApikey}`;
   const currentDataOnMemoryCache = cachedWeatherData.cache[`${latitude}-${longitude}`];
@@ -117,7 +117,7 @@ const weatherApiDataFetcher = ({ latitude, longitude, cityName }, res) => {
 
                 res.render('home', normalizedData);
               } else {
-                res.json(error);
+                res.json(JSON.parse(response.body) || error);
               }
             } catch (error) {
               res.json(error);
@@ -125,7 +125,7 @@ const weatherApiDataFetcher = ({ latitude, longitude, cityName }, res) => {
           });
   
         } else {
-          res.json(error);
+          res.json(JSON.parse(response.body) || error);
         }
       } catch (error) {
         res.json(error);

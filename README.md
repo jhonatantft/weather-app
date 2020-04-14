@@ -67,7 +67,7 @@ src/
 |  |- routes/ _____________________________ # Express routes
 |  |- sass/ _______________________________ # Sass files
 |  |- views/ ______________________________ # Template files
-|- index.jsx _______________________________ # Client application entry
+|- index.js _______________________________ # Client application entry
 ````
 
 ### Technologies used
