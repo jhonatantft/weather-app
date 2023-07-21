@@ -76,4 +76,4 @@ src/
 * [Express](https://expressjs.com/) [ Fast, unopinionated, minimalist web framework for Node.js
  ]
 * [Mustache Express](https://www.npmjs.com/package/mustache-express)
-* [Node-sass](https://github.com/sass/node-sass) [ Binding for Node.js to LibSass ]   
+* [Node-sass](https://github.com/sass/node-sass) [ Binding for Node.js to LibSass ]
